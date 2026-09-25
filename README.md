@@ -14,3 +14,6 @@
 
 ### Testing
 Tested on desktop and mobile view - no horizontal scroll, all animations working smoothly.
+PS C:\Users\HP\Desktop\Aurex week 4> git push
+fatal: not a git repository (or any of the parent directories): .git
+PS C:\Users\HP\Desktop\Aurex week 4> 
