@@ -1,0 +1,26 @@
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Segoe UI',sans-serif;background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);min-height:100vh;padding:20px}
+.container{max-width:600px;margin:0 auto;background:#fff;border-radius:16px;box-shadow:0 20px 60px rgba(0,0,0,.3);overflow:hidden}
+header{background:#4a3f9d;color:#fff;padding:25px;text-align:center}
+header p{opacity:.8;font-size:13px;margin-top:5px}
+.task-form{padding:20px;border-bottom:1px solid #eee}
+.input-group{display:flex;gap:10px}
+#taskInput{flex:1;padding:12px 15px;border:2px solid #e0e0e0;border-radius:8px;outline:none;font-size:14px}
+#taskInput:focus{border-color:#667eea}
+#addBtn{padding:12px 20px;background:#667eea;color:#fff;border:none;border-radius:8px;cursor:pointer;font-weight:600}
+.error{color:#e74c3c;font-size:13px;margin-top:8px;display:block;min-height:18px}
+.filters{display:flex;gap:10px;padding:15px 20px;justify-content:center;background:#f8f9fa}
+.filter-btn{padding:8px 18px;border:1px solid #ddd;background:#fff;border-radius:20px;cursor:pointer;font-size:13px}
+.filter-btn.active{background:#667eea;color:#fff;border-color:#667eea}
+.stats{display:flex;justify-content:space-between;padding:12px 20px;font-size:13px;color:#666;border-bottom:1px solid #eee}
+.task-list{list-style:none;max-height:400px;overflow-y:auto}
+.task-item{display:flex;align-items:center;gap:12px;padding:15px 20px;border-bottom:1px solid #f0f0f0}
+.task-item.completed{background:#f8fff8;opacity:.7}
+.task-item.completed.task-text{text-decoration:line-through;color:#888}
+.task-checkbox{width:20px;height:20px;cursor:pointer}
+.task-text{flex:1;font-size:15px;word-break:break-word}
+.edit-btn,.delete-btn{padding:6px 12px;border:none;border-radius:6px;cursor:pointer;font-size:12px}
+.edit-btn{background:#ffeaa7}
+.delete-btn{background:#ff7675;color:#fff}
+footer{text-align:center;padding:15px;font-size:12px;color:#999;background:#fafafa}
+@media(max-width:500px){.input-group{flex-direction:column}.container{border-radius:0}body{padding:0}}
