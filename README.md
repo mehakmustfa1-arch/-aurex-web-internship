@@ -1,19 +1,19 @@
-# AUREX Web Internship - Week 3
+# AUREX Week 4 - Task Manager
+
 **Name:** Mehak Mustafa
 **Domain:** Frontend Development
-**Week:** 3 - Advanced CSS Grid & Animations
+**Week:** 4 - JS + DOM + localStorage
 
-**Live Link:** https://mehakmustfa1-arch.github.io/-aurex-web-internship/
-**Repo Link:** https://github.com/mehakmustfa1-arch/-aurex-web-internship
+### Live Demo
+https://aurex-web-internship.vercel.app
 
-### Features Implemented
-- CSS Grid with auto-fit and minmax for Projects Gallery
-- Card hover elevation and scale animations
-- Keyframe fade-in animation on page load
-- Fluid typography and fully responsive design (mobile, tablet, desktop)
+### Tech Used
+- HTML5, CSS3, Vanilla JavaScript
+- localStorage (JSON.stringify / parse)
 
-### Testing
-Tested on desktop and mobile view - no horizontal scroll, all animations working smoothly.
-PS C:\Users\HP\Desktop\Aurex week 4> git push
-fatal: not a git repository (or any of the parent directories): .git
-PS C:\Users\HP\Desktop\Aurex week 4> 
+### Features
+- Add / Edit / Delete Task
+- Mark as Complete
+- Filter: All / Active / Completed
+- Form Validation (Empty + 3 chars)
+- Save, Retrieve, Update, Remove in localStorage
