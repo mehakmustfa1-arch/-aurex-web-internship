@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AUREX Task Manager - Week 4</title>
+    <link rel="stylesheet" href="styles/main.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📝 Task Manager</h1>
+            <p>AUREX Week 4 - Vanilla JS + localStorage</p>
+        </header>
+
+        <form id="taskForm" class="task-form">
+            <div class="input-group">
+                <input type="text" id="taskInput" placeholder="Enter a new task...">
+                <button type="submit" id="addBtn">Add Task</button>
+            </div>
+            <span id="errorMsg" class="error"></span>
+        </form>
+
+        <div class="filters">
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="active">Active</button>
+            <button class="filter-btn" data-filter="completed">Completed</button>
+        </div>
+
+        <div class="stats">
+            <span id="totalTasks">Total: 0</span>
+            <span id="completedTasks">Completed: 0</span>
+        </div>
+
+        <ul id="taskList" class="task-list"></ul>
+
+        <footer><p>Saved in localStorage - persists after refresh</p></footer>
+    </div>
+    <script src="scripts/main.js"></script>
+</body>
+</html>
