@@ -1,41 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AUREX Task Manager - Week 4</title>
-    <link rel="stylesheet" href="styles/main.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AUREX Task Manager - Week 4</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Segoe UI,sans-serif}
+body{background:#f2f2f7;display:flex;justify-content:center;padding:20px}
+.container{max-width:600px;width:100%;background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 10px 30px rgba(0,0,0,0.1)}
+header{background:linear-gradient(135deg,#8a7bff,#6a5af9);color:#fff;padding:35px;text-align:center}
+.input-area{display:flex;gap:10px;padding:20px}
+.input-area input{flex:1;padding:13px;border:2px solid #e5e5e5;border-radius:10px}
+.input-area button{padding:13px 22px;background:#6a5af9;color:#fff;border:none;border-radius:10px;cursor:pointer;font-weight:600}
+.filters{display:flex;gap:10px;padding:0 20px}
+.filters button{padding:7px 14px;border-radius:20px;border:1px solid #ddd;background:#fff;cursor:pointer}
+.filters button.active{background:#6a5af9;color:#fff;border-color:#6a5af9}
+#taskList{list-style:none;padding:20px}
+#taskList li{display:flex;justify-content:space-between;align-items:center;padding:12px 10px;border-bottom:1px solid #f0f0f0}
+#taskList li.completed span{text-decoration:line-through;color:#999}
+.stats{padding:15px 20px;background:#fafafa;font-weight:600;display:flex;gap:15px}
+footer{background:#1e2a32;color:#fff;text-align:center;padding:16px;font-size:14px}
+.btns button{margin-left:6px;padding:5px 10px;border:none;border-radius:6px;cursor:pointer}
+</style>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>📝 Task Manager</h1>
-            <p>AUREX Week 4 - Vanilla JS + localStorage</p>
-        </header>
-
-        <form id="taskForm" class="task-form">
-            <div class="input-group">
-                <input type="text" id="taskInput" placeholder="Enter a new task...">
-                <button type="submit" id="addBtn">Add Task</button>
-            </div>
-            <span id="errorMsg" class="error"></span>
-        </form>
-
-        <div class="filters">
-            <button class="filter-btn active" data-filter="all">All</button>
-            <button class="filter-btn" data-filter="active">Active</button>
-            <button class="filter-btn" data-filter="completed">Completed</button>
-        </div>
-
-        <div class="stats">
-            <span id="totalTasks">Total: 0</span>
-            <span id="completedTasks">Completed: 0</span>
-        </div>
-
-        <ul id="taskList" class="task-list"></ul>
-
-        <footer><p>Saved in localStorage - persists after refresh</p></footer>
-    </div>
-    <script src="scripts/main.js"></script>
+<div class="container">
+<header><h1>📝 Task Manager</h1><p>AUREX Week 4 - Vanilla JS + localStorage</p></header>
+<div class="input-area">
+<input id="taskInput" placeholder="Enter a new task...">
+<button id="addBtn">Add Task</button>
+</div>
+<div class="filters">
+<button data-filter="all" class="active">All</button>
+<button data-filter="active">Active</button>
+<button data-filter="completed">Completed</button>
+</div>
+<ul id="taskList"></ul>
+<div class="stats"><span id="total">Total: 0</span><span id="completedCount">Completed: 0</span></div>
+<footer>Saved in localStorage - persists after refresh</footer>
+</div>
+<script>
+let tasks = JSON.parse(localStorage.getItem('aurex-tasks') || '[]');
+const input = document.getElementById('taskInput');
+const list = document.getElementById('taskList');
+const addBtn = document.getElementById('addBtn');
+function save(){ localStorage.setItem('aurex-tasks', JSON.stringify(tasks)); render(); }
+function render(filter='all'){
+  list.innerHTML='';
+  let filtered = tasks.filter(t => filter==='all'? true : filter==='active'?!t.done : t.done);
+  filtered.forEach((t,i)=>{
+    let idx = tasks.indexOf(t);
+    let li = document.createElement('li');
+    li.className = t.done? 'completed' : '';
+    li.innerHTML = `<span onclick="toggle(${idx})" style="cursor:pointer;flex:1">${t.text}</span><div class="btns"><button onclick="editTask(${idx})">✏️</button><button onclick="delTask(${idx})">🗑️</button></div>`;
+    list.appendChild(li);
+  });
+  document.getElementById('total').innerText = 'Total: '+tasks.length;
+  document.getElementById('completedCount').innerText = 'Completed: '+tasks.filter(t=>t.done).length;
+}
+addBtn.onclick = ()=>{
+  let v = input.value.trim();
+  if(v.length < 3){ alert('Minimum 3 characters required'); return; }
+  tasks.push({text:v, done:false}); input.value=''; save();
+};
+window.toggle = (i)=>{ tasks[i].done=!tasks[i].done; save(); };
+window.delTask = (i)=>{ tasks.splice(i,1); save(); };
+window.editTask = (i)=>{ let n=prompt('Edit task', tasks[i].text); if(n && n.trim().length>=3){ tasks[i].text=n.trim(); save(); } };
+document.querySelectorAll('.filters button').forEach(b=>b.onclick=(e)=>{ document.querySelectorAll('.filters button').forEach(x=>x.classList.remove('active')); e.target.classList.add('active'); render(e.target.dataset.filter); });
+render();
+</script>
 </body>
 </html>
