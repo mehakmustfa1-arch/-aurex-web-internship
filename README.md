@@ -3,8 +3,9 @@
 **Name:** Mehak Mustfa  
 **Domain:** Frontend Development  
 **Week:** 4 - JS + DOM + localStorage
-
 ### 🚀 Live Demo
+- GitHub Pages: https://mehakmustfa1-arch.github.io/-aurex-web-internship/
+- Vercel: https://aurex-web-internship.vercel.app
 https://aurex-web-internship.vercel.app
 
 ### 💻 Tech Used
